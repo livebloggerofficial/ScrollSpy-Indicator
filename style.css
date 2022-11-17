@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  height: 70vh;
+  background: #f1faee;
+  font-size: 40px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: #222;
+}
+
+section:nth-of-type(even) {
+  background: #fff;
+}
+
+section .wrapper {
+  max-width: 700px;
+  padding: 32px;
+  margin: 0 auto;
+}
+
+.scroll-indicator {
+  position: fixed;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.scroll-indicator a {
+  padding: 10px;
+  position: relative;
+}
+
+.scroll-indicator a::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scroll-indicator a.active::after {
+  background: red;
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.scroll-indicator a::before {
+  content: attr(data-section);
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translate(4px, -50%);
+  background: red;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  padding: 2px 16px;
+  text-transform: uppercase;
+  font-size: 13px;
+  pointer-events: none;
+  box-shadow: 0 7px 14px -6px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: all 400ms ease;
+}
+
+.scroll-indicator a:hover::before {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.scroll-indicator .arrow {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .scroll-indicator {
+    right: 8px;
+    background: #fff;
+    box-shadow: 0 4px 40px -8px rgba(0, 0, 0, 0.3);
+    padding: 24px 6px;
+    border-radius: 20px;
+    transform: translate(40px, -50%);
+    transition: all 400ms ease;
+  }
+
+  .scroll-indicator.active {
+    transform: translate(-50%, -50%);
+  }
+
+  .scroll-indicator .arrow {
+    width: 20px;
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #222;
+    color: #fff;
+    padding: 4px 0;
+    display: flex;
+    border-radius: 8px 0 0 8px;
+    cursor: pointer;
+  }
+
+  .scroll-indicator.active a::before {
+    opacity: 1;
+    transform: translate(-2px, -50%);
+  }
+}
